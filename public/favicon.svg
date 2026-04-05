@@ -1,0 +1,20 @@
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="10" y1="8" x2="54" y2="56" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#24A08F" />
+      <stop offset="1" stop-color="#155E63" />
+    </linearGradient>
+    <linearGradient id="accent" x1="20" y1="14" x2="47" y2="45" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#F8B133" />
+      <stop offset="1" stop-color="#F07C28" />
+    </linearGradient>
+  </defs>
+  <rect x="4" y="4" width="56" height="56" rx="16" fill="url(#bg)" />
+  <path d="M18 22C18 18.6863 20.6863 16 24 16H40C43.3137 16 46 18.6863 46 22V24C46 26.2091 44.2091 28 42 28H22C19.7909 28 18 26.2091 18 24V22Z" fill="white" fill-opacity="0.96" />
+  <path d="M20 28H44V42C44 44.2091 42.2091 46 40 46H24C21.7909 46 20 44.2091 20 42V28Z" fill="white" fill-opacity="0.92" />
+  <rect x="24" y="32" width="4" height="10" rx="2" fill="#1F3A40" />
+  <rect x="31" y="29" width="4" height="13" rx="2" fill="#1F3A40" />
+  <rect x="38" y="25" width="4" height="17" rx="2" fill="url(#accent)" />
+  <path d="M22 22H42" stroke="#F8B133" stroke-width="3" stroke-linecap="round" />
+  <circle cx="47" cy="19" r="5" fill="url(#accent)" />
+</svg>

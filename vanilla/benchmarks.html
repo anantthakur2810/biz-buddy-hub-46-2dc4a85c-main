@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BizBuddy - Competitive Benchmarks</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    /* Benchmark-specific styles */
+    .benchmark-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; }
+    .benchmark-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; }
+    .benchmark-card h3 { font-size: 1rem; font-weight: 600; margin-bottom: 1rem; color: var(--foreground); }
+    .benchmark-card p.subtitle { font-size: 0.8rem; color: var(--muted-foreground); margin-top: -0.75rem; margin-bottom: 1rem; }
+
+    /* Horizontal bar comparison */
+    .bar-group { margin-bottom: 1.25rem; }
+    .bar-label { display: flex; justify-content: space-between; font-size: 0.8rem; margin-bottom: 0.35rem; }
+    .bar-label span:first-child { color: var(--foreground); font-weight: 500; }
+    .bar-label span:last-child { color: var(--muted-foreground); }
+    .bar-track { height: 10px; background: var(--muted); border-radius: 6px; position: relative; overflow: hidden; }
+    .bar-fill { height: 100%; border-radius: 6px; transition: width 1s ease; }
+    .bar-fill.you { background: var(--primary); }
+    .bar-fill.avg { background: var(--muted-foreground); opacity: 0.4; position: absolute; top: 0; left: 0; height: 100%; }
+
+    /* Rank badge */
+    .rank-badge { display: inline-flex; align-items: center; gap: 0.35rem; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.75rem; font-weight: 600; }
+    .rank-badge.top { background: #dcfce7; color: #166534; }
+    .rank-badge.mid { background: #fef9c3; color: #854d0e; }
+    .rank-badge.low { background: #fee2e2; color: #991b1b; }
+
+    /* Insight cards */
+    .insight-list { display: flex; flex-direction: column; gap: 1rem; }
+    .insight-item { display: flex; gap: 1rem; align-items: flex-start; padding: 1rem; background: var(--muted); border-radius: 10px; }
+    .insight-icon { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 1.1rem; }
+    .insight-icon.strength { background: #dcfce7; color: #166534; }
+    .insight-icon.weakness { background: #fee2e2; color: #991b1b; }
+    .insight-icon.opportunity { background: #dbeafe; color: #1e40af; }
+    .insight-text h4 { font-size: 0.875rem; font-weight: 600; color: var(--foreground); margin-bottom: 0.2rem; }
+    .insight-text p { font-size: 0.8rem; color: var(--muted-foreground); line-height: 1.5; }
+
+    /* Percentile gauge */
+    .gauge-row { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.25rem; }
+    .gauge-label { width: 120px; font-size: 0.8rem; font-weight: 500; color: var(--foreground); flex-shrink: 0; }
+    .gauge-track { flex: 1; height: 8px; background: var(--muted); border-radius: 6px; position: relative; }
+    .gauge-marker { width: 14px; height: 14px; border-radius: 50%; background: var(--primary); border: 2px solid var(--card); position: absolute; top: -3px; transition: left 1s ease; }
+    .gauge-value { width: 50px; text-align: right; font-size: 0.8rem; font-weight: 600; color: var(--primary); flex-shrink: 0; }
+
+    /* Privacy banner */
+    .privacy-banner { display: flex; align-items: center; gap: 0.75rem; padding: 0.85rem 1.25rem; background: var(--muted); border-radius: 10px; margin-bottom: 1.5rem; font-size: 0.8rem; color: var(--muted-foreground); }
+    .privacy-banner svg { flex-shrink: 0; color: var(--primary); }
+
+    /* Legend */
+    .legend { display: flex; gap: 1.5rem; margin-bottom: 1rem; font-size: 0.75rem; color: var(--muted-foreground); }
+    .legend-item { display: flex; align-items: center; gap: 0.4rem; }
+    .legend-dot { width: 10px; height: 10px; border-radius: 3px; }
+    .legend-dot.you { background: var(--primary); }
+    .legend-dot.avg { background: var(--muted-foreground); opacity: 0.4; }
+  </style>
+</head>
+<body>
+  <div class="app-container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-logo">
+        <div class="sidebar-logo-icon">B</div>
+        <h1>BizBuddy</h1>
+      </div>
+      <nav class="sidebar-nav">
+        <a href="index.html" class="nav-link">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg>
+          <span>Dashboard</span>
+        </a>
+        <a href="customers.html" class="nav-link">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          <span>Customers</span>
+        </a>
+        <a href="sales.html" class="nav-link">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
+          <span>Sales</span>
+        </a>
+        <a href="inventory.html" class="nav-link">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 21.73a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73z"/><path d="M12 22V12"/><path d="m3.3 7 7.703 4.734a2 2 0 0 0 1.994 0L20.7 7"/><path d="m7.5 4.27 9 5.15"/></svg>
+          <span>Inventory</span>
+        </a>
+        <a href="store.html" class="nav-link">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m2 7 4.41-4.41A2 2 0 0 1 7.83 2h8.34a2 2 0 0 1 1.42.59L22 7"/><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><path d="M15 22v-4a2 2 0 0 0-2-2h-2a2 2 0 0 0-2 2v4"/><path d="M2 7h20"/><path d="M22 7v3a2 2 0 0 1-2 2a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 16 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 12 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 8 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 4 12a2 2 0 0 1-2-2V7"/></svg>
+          <span>Store</span>
+        </a>
+        <a href="benchmarks.html" class="nav-link active">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></svg>
+          <span>Benchmarks</span>
+        </a>
+      </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <div class="page-header">
+        <h1 class="page-title">Competitive Benchmarks</h1>
+        <p class="page-description">See how your business compares to anonymized industry peers — no data is shared.</p>
+      </div>
+
+      <!-- Privacy Banner -->
+      <div class="privacy-banner">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        <span><strong>Privacy Protected:</strong> All competitor data is aggregated &amp; anonymized. Individual business data is never exposed. You only see percentile ranks and category averages.</span>
+      </div>
+
+      <!-- Percentile Rankings -->
+      <div class="benchmark-grid">
+        <div class="benchmark-card">
+          <h3>📊 Your Percentile Ranking</h3>
+          <p class="subtitle">Where you stand among 234 registered businesses in your category</p>
+          <div id="percentile-gauges"></div>
+        </div>
+
+        <!-- Performance vs Industry Average -->
+        <div class="benchmark-card">
+          <h3>⚡ Performance vs Industry Average</h3>
+          <p class="subtitle">Your metrics compared to the anonymized category average</p>
+          <div class="legend">
+            <div class="legend-item"><div class="legend-dot you"></div> Your Business</div>
+            <div class="legend-item"><div class="legend-dot avg"></div> Industry Avg</div>
+          </div>
+          <div id="comparison-bars"></div>
+        </div>
+      </div>
+
+      <!-- Category Scores & Insights -->
+      <div class="benchmark-grid" style="margin-top: 1.5rem;">
+        <div class="benchmark-card">
+          <h3>🏆 Category Scores</h3>
+          <p class="subtitle">Your rank across key business dimensions</p>
+          <div id="category-scores"></div>
+        </div>
+
+        <div class="benchmark-card">
+          <h3>💡 Actionable Insights</h3>
+          <p class="subtitle">Key areas where you can improve based on peer comparison</p>
+          <div class="insight-list" id="insights-list"></div>
+        </div>
+      </div>
+
+      <!-- Trend Comparison -->
+      <div class="benchmark-card" style="margin-top: 1.5rem;">
+        <h3>📈 6-Month Growth Trend vs Peers</h3>
+        <p class="subtitle">Your monthly revenue growth compared to the peer median (anonymized)</p>
+        <div class="legend" style="margin-bottom: 0.5rem;">
+          <div class="legend-item"><div class="legend-dot you"></div> Your Growth</div>
+          <div class="legend-item"><div class="legend-dot avg"></div> Peer Median</div>
+        </div>
+        <div id="trend-chart" style="display: flex; align-items: flex-end; gap: 1rem; height: 180px; padding-top: 1rem;"></div>
+      </div>
+    </main>
+  </div>
+
+  <script src="js/data.js"></script>
+  <script src="js/utils.js"></script>
+  <script>
+    // ===== Anonymized Benchmark Data (simulated aggregates — no real business data exposed) =====
+    const yourBusiness = {
+      revenue: mockDashboardStats.totalRevenue,
+      customers: mockDashboardStats.totalCustomers,
+      products: mockDashboardStats.totalProducts,
+      salesCount: mockDashboardStats.totalSales,
+      avgOrderValue: mockDashboardStats.totalRevenue / mockDashboardStats.totalSales,
+      revenueGrowth: mockDashboardStats.revenueGrowth,
+    };
+
+    // Simulated anonymized industry aggregates (no individual business data)
+    const industryAvg = {
+      revenue: 985000,
+      customers: 128,
+      products: 35,
+      salesCount: 190,
+      avgOrderValue: 4800,
+      revenueGrowth: 8.1,
+    };
+
+    // Percentile rankings (pre-computed, anonymized)
+    const percentiles = [
+      { label: 'Revenue', value: 72 },
+      { label: 'Customer Base', value: 68 },
+      { label: 'Product Range', value: 81 },
+      { label: 'Sales Volume', value: 75 },
+      { label: 'Avg Order Value', value: 58 },
+      { label: 'Growth Rate', value: 84 },
+    ];
+
+    // ===== Render Percentile Gauges =====
+    const gaugeContainer = document.getElementById('percentile-gauges');
+    percentiles.forEach(p => {
+      const row = document.createElement('div');
+      row.className = 'gauge-row';
+      row.innerHTML = `
+        <span class="gauge-label">${p.label}</span>
+        <div class="gauge-track">
+          <div class="gauge-marker" style="left: ${p.value}%"></div>
+        </div>
+        <span class="gauge-value">${p.value}th</span>
+      `;
+      gaugeContainer.appendChild(row);
+    });
+
+    // ===== Render Comparison Bars =====
+    const barContainer = document.getElementById('comparison-bars');
+    const comparisons = [
+      { label: 'Monthly Revenue', yours: yourBusiness.revenue, avg: industryAvg.revenue, format: v => formatCurrency(v) },
+      { label: 'Customers', yours: yourBusiness.customers, avg: industryAvg.customers, format: v => v.toString() },
+      { label: 'Products Listed', yours: yourBusiness.products, avg: industryAvg.products, format: v => v.toString() },
+      { label: 'Total Sales', yours: yourBusiness.salesCount, avg: industryAvg.salesCount, format: v => v.toString() },
+      { label: 'Growth Rate', yours: yourBusiness.revenueGrowth, avg: industryAvg.revenueGrowth, format: v => v + '%' },
+    ];
+
+    comparisons.forEach(c => {
+      const max = Math.max(c.yours, c.avg) * 1.15;
+      const yourPct = (c.yours / max) * 100;
+      const avgPct = (c.avg / max) * 100;
+      const group = document.createElement('div');
+      group.className = 'bar-group';
+      group.innerHTML = `
+        <div class="bar-label"><span>${c.label}</span><span>You: ${c.format(c.yours)}</span></div>
+        <div class="bar-track">
+          <div class="bar-fill avg" style="width: ${avgPct}%"></div>
+          <div class="bar-fill you" style="width: ${yourPct}%"></div>
+        </div>
+      `;
+      barContainer.appendChild(group);
+    });
+
+    // ===== Category Scores =====
+    const scoreContainer = document.getElementById('category-scores');
+    const categories = [
+      { name: 'Revenue Performance', score: 'A-', rank: 'top', detail: 'Top 28% in your category' },
+      { name: 'Customer Retention', score: 'B+', rank: 'mid', detail: 'Above average — room to grow' },
+      { name: 'Product Diversity', score: 'A', rank: 'top', detail: 'Top 19% — strong catalog' },
+      { name: 'Sales Velocity', score: 'B', rank: 'mid', detail: 'Matching industry pace' },
+      { name: 'Avg Order Value', score: 'C+', rank: 'low', detail: 'Below average — key improvement area' },
+      { name: 'Growth Trajectory', score: 'A', rank: 'top', detail: 'Top 16% — outpacing peers' },
+    ];
+
+    categories.forEach(cat => {
+      const row = document.createElement('div');
+      row.style.cssText = 'display:flex; justify-content:space-between; align-items:center; padding:0.75rem 0; border-bottom:1px solid var(--border);';
+      row.innerHTML = `
+        <div>
+          <div style="font-size:0.85rem; font-weight:500; color:var(--foreground);">${cat.name}</div>
+          <div style="font-size:0.75rem; color:var(--muted-foreground);">${cat.detail}</div>
+        </div>
+        <span class="rank-badge ${cat.rank}">${cat.score}</span>
+      `;
+      scoreContainer.appendChild(row);
+    });
+
+    // ===== Actionable Insights =====
+    const insightsList = document.getElementById('insights-list');
+    const insights = [
+      { type: 'weakness', icon: '⚠️', title: 'Avg Order Value is Below Peers', text: 'Your average order is ₹5,321 vs the industry average of ₹4,800. Consider bundling products, offering volume discounts, or upselling complementary items at checkout.' },
+      { type: 'strength', icon: '✅', title: 'Strong Growth Trajectory', text: 'Your 12.5% month-over-month growth is in the top 16% of peers. Maintain marketing efforts and consider scaling inventory for high-demand products.' },
+      { type: 'opportunity', icon: '🔍', title: 'Customer Base Can Expand', text: 'You're in the 68th percentile for customers. Peers with similar revenue have 20% more customers. Try referral programs or targeted social media campaigns.' },
+      { type: 'weakness', icon: '⚠️', title: 'Inventory Variety Opportunity', text: '3 items are low in stock. Peers in the top quartile maintain 95%+ stock availability. Restock fast-movers to avoid lost sales.' },
+    ];
+
+    insights.forEach(ins => {
+      const item = document.createElement('div');
+      item.className = 'insight-item';
+      item.innerHTML = `
+        <div class="insight-icon ${ins.type}">${ins.icon}</div>
+        <div class="insight-text">
+          <h4>${ins.title}</h4>
+          <p>${ins.text}</p>
+        </div>
+      `;
+      insightsList.appendChild(item);
+    });
+
+    // ===== 6-Month Growth Trend =====
+    const trendChart = document.getElementById('trend-chart');
+    const yourGrowth = [4.2, 6.1, 5.8, 8.3, 10.2, 12.5];
+    const peerGrowth = [3.8, 4.5, 5.2, 5.9, 6.8, 8.1];
+    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'];
+    const maxGrowth = Math.max(...yourGrowth, ...peerGrowth) * 1.1;
+
+    months.forEach((m, i) => {
+      const col = document.createElement('div');
+      col.style.cssText = 'flex:1; display:flex; flex-direction:column; align-items:center; gap:0.25rem;';
+      const barHeight = 140;
+      const yH = (yourGrowth[i] / maxGrowth) * barHeight;
+      const pH = (peerGrowth[i] / maxGrowth) * barHeight;
+      col.innerHTML = `
+        <div style="display:flex; gap:4px; align-items:flex-end; height:${barHeight}px;">
+          <div style="width:18px; height:${yH}px; background:var(--primary); border-radius:4px 4px 0 0; transition: height 1s ease;" title="You: ${yourGrowth[i]}%"></div>
+          <div style="width:18px; height:${pH}px; background:var(--muted-foreground); opacity:0.35; border-radius:4px 4px 0 0; transition: height 1s ease;" title="Peers: ${peerGrowth[i]}%"></div>
+        </div>
+        <span style="font-size:0.7rem; color:var(--muted-foreground);">${m}</span>
+      `;
+      trendChart.appendChild(col);
+    });
+  </script>
+</body>
+</html>

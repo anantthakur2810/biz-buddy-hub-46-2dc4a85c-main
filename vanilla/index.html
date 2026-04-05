@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BizBuddy - Dashboard</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-logo">
+        <div class="sidebar-logo-icon">B</div>
+        <h1>BizBuddy</h1>
+      </div>
+      <nav class="sidebar-nav">
+        <a href="index.html" class="nav-link active">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg>
+          <span>Dashboard</span>
+        </a>
+        <a href="customers.html" class="nav-link">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          <span>Customers</span>
+        </a>
+        <a href="sales.html" class="nav-link">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
+          <span>Sales</span>
+        </a>
+        <a href="inventory.html" class="nav-link">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 21.73a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73z"/><path d="M12 22V12"/><path d="m3.3 7 7.703 4.734a2 2 0 0 0 1.994 0L20.7 7"/><path d="m7.5 4.27 9 5.15"/></svg>
+          <span>Inventory</span>
+        </a>
+        <a href="store.html" class="nav-link">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m2 7 4.41-4.41A2 2 0 0 1 7.83 2h8.34a2 2 0 0 1 1.42.59L22 7"/><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><path d="M15 22v-4a2 2 0 0 0-2-2h-2a2 2 0 0 0-2 2v4"/><path d="M2 7h20"/><path d="M22 7v3a2 2 0 0 1-2 2a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 16 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 12 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 8 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 4 12a2 2 0 0 1-2-2V7"/></svg>
+          <span>Store</span>
+        </a>
+        <a href="benchmarks.html" class="nav-link">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></svg>
+          <span>Benchmarks</span>
+        </a>
+      </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <div class="page-header">
+        <h1 class="page-title">Dashboard</h1>
+        <p class="page-description">Welcome back! Here's an overview of your business.</p>
+      </div>
+
+      <!-- Stats Grid -->
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-content">
+            <h3>Total Revenue</h3>
+            <div class="stat-value" id="totalRevenue">₹12,45,075.00</div>
+            <div class="stat-change positive">+12.5% from last month</div>
+          </div>
+          <div class="stat-icon success">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h12"/><path d="M6 8h12"/><path d="m6 13 8.5 8"/><path d="M6 13h3"/><path d="M9 13c6.667 0 6.667-10 0-10"/></svg>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-content">
+            <h3>Customers</h3>
+            <div class="stat-value">156</div>
+            <div class="stat-change positive">+8.3% from last month</div>
+          </div>
+          <div class="stat-icon primary">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-content">
+            <h3>Products</h3>
+            <div class="stat-value">48</div>
+            <div class="stat-change negative">3 low stock</div>
+          </div>
+          <div class="stat-icon accent">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 21.73a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73z"/><path d="M12 22V12"/><path d="m3.3 7 7.703 4.734a2 2 0 0 0 1.994 0L20.7 7"/><path d="m7.5 4.27 9 5.15"/></svg>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-content">
+            <h3>Total Sales</h3>
+            <div class="stat-value">234</div>
+            <div class="stat-change neutral">This month</div>
+          </div>
+          <div class="stat-icon pink">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- Charts Grid -->
+      <div class="charts-grid">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Revenue Overview</h3>
+          </div>
+          <div class="chart-container" id="revenueChart">
+            <!-- Chart bars will be inserted by JS -->
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Recent Sales</h3>
+          </div>
+          <div id="recentSales">
+            <!-- Sales will be inserted by JS -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Low Stock Alert -->
+      <div class="card">
+        <div class="alert alert-warning">
+          <svg class="alert-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>
+          <div>
+            <div class="alert-title">Low Stock Alert</div>
+            <div class="alert-description">Some products are running low on stock</div>
+          </div>
+        </div>
+        <div class="low-stock-list" id="lowStockList">
+          <!-- Low stock items will be inserted by JS -->
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="js/data.js"></script>
+  <script src="js/utils.js"></script>
+  <script>
+    // Render revenue chart
+    const chartData = revenueChartData;
+    const maxRevenue = Math.max(...chartData.map(d => d.revenue));
+    const chartContainer = document.getElementById('revenueChart');
+    
+    chartData.forEach(item => {
+      const height = (item.revenue / maxRevenue) * 250;
+      const bar = document.createElement('div');
+      bar.className = 'chart-bar';
+      bar.style.height = height + 'px';
+      bar.innerHTML = `<span class="chart-bar-label">${item.name}</span>`;
+      bar.title = formatCurrency(item.revenue);
+      chartContainer.appendChild(bar);
+    });
+
+    // Render recent sales
+    const salesContainer = document.getElementById('recentSales');
+    mockSales.slice(0, 5).forEach(sale => {
+      const saleEl = document.createElement('div');
+      saleEl.className = 'recent-sale-item';
+      saleEl.innerHTML = `
+        <div class="sale-customer">
+          <div class="avatar avatar-primary">${getInitials(sale.customerName)}</div>
+          <div class="sale-customer-info">
+            <h4>${sale.customerName}</h4>
+            <p>${formatDate(sale.createdAt)}</p>
+          </div>
+        </div>
+        <div class="sale-amount">${formatCurrency(sale.total)}</div>
+      `;
+      salesContainer.appendChild(saleEl);
+    });
+
+    // Render low stock items
+    const lowStockContainer = document.getElementById('lowStockList');
+    const lowStockProducts = mockProducts.filter(p => p.quantity < p.minStock);
+    
+    lowStockProducts.forEach(product => {
+      const itemEl = document.createElement('div');
+      itemEl.className = 'low-stock-item';
+      itemEl.innerHTML = `
+        <div class="low-stock-info">
+          <h4>${product.name}</h4>
+          <p>SKU: ${product.sku}</p>
+        </div>
+        <span class="badge badge-danger">${product.quantity} left</span>
+      `;
+      lowStockContainer.appendChild(itemEl);
+    });
+  </script>
+</body>
+</html>

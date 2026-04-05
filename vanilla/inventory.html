@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BizBuddy - Inventory</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-logo">
+        <div class="sidebar-logo-icon">B</div>
+        <h1>BizBuddy</h1>
+      </div>
+      <nav class="sidebar-nav">
+        <a href="index.html" class="nav-link">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg>
+          <span>Dashboard</span>
+        </a>
+        <a href="customers.html" class="nav-link">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          <span>Customers</span>
+        </a>
+        <a href="sales.html" class="nav-link">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
+          <span>Sales</span>
+        </a>
+        <a href="inventory.html" class="nav-link active">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 21.73a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73z"/><path d="M12 22V12"/><path d="m3.3 7 7.703 4.734a2 2 0 0 0 1.994 0L20.7 7"/><path d="m7.5 4.27 9 5.15"/></svg>
+          <span>Inventory</span>
+        </a>
+        <a href="store.html" class="nav-link">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m2 7 4.41-4.41A2 2 0 0 1 7.83 2h8.34a2 2 0 0 1 1.42.59L22 7"/><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><path d="M15 22v-4a2 2 0 0 0-2-2h-2a2 2 0 0 0-2 2v4"/><path d="M2 7h20"/><path d="M22 7v3a2 2 0 0 1-2 2a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 16 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 12 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 8 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 4 12a2 2 0 0 1-2-2V7"/></svg>
+          <span>Store</span>
+        </a>
+        <a href="benchmarks.html" class="nav-link">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></svg>
+          <span>Benchmarks</span>
+        </a>
+      </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <div class="page-header" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+        <div>
+          <h1 class="page-title">Inventory</h1>
+          <p class="page-description">Manage your product inventory</p>
+        </div>
+        <button class="btn btn-primary" onclick="openModal('addProductModal')">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
+          Add Product
+        </button>
+      </div>
+
+      <!-- Search -->
+      <div class="input-with-icon" style="max-width: 300px; margin-bottom: 1.5rem;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+        <input type="text" class="input" id="productSearch" placeholder="Search products..." oninput="filterProducts()">
+      </div>
+
+      <!-- Table -->
+      <div class="card table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Product</th>
+              <th>SKU</th>
+              <th>Category</th>
+              <th class="text-right">Price</th>
+              <th class="text-right">Cost</th>
+              <th class="text-right">Stock</th>
+              <th>Status</th>
+              <th style="width: 50px;"></th>
+            </tr>
+          </thead>
+          <tbody id="productTableBody">
+            <!-- Products will be inserted by JS -->
+          </tbody>
+        </table>
+      </div>
+    </main>
+  </div>
+
+  <!-- Add Product Modal -->
+  <div class="modal-overlay" id="addProductModal">
+    <div class="modal">
+      <div class="modal-header">
+        <h2>Add New Product</h2>
+        <p>Enter the product details below.</p>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="productName">Product Name</label>
+        <input type="text" class="input" id="productName" placeholder="Wireless Headphones">
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="productSku">SKU</label>
+        <input type="text" class="input" id="productSku" placeholder="WH-001">
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="productCategory">Category</label>
+        <input type="text" class="input" id="productCategory" placeholder="Electronics">
+      </div>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+        <div class="form-group">
+          <label class="form-label" for="productPrice">Price (₹)</label>
+          <input type="number" class="input" id="productPrice" placeholder="1999">
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="productCost">Cost (₹)</label>
+          <input type="number" class="input" id="productCost" placeholder="999">
+        </div>
+      </div>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+        <div class="form-group">
+          <label class="form-label" for="productQty">Quantity</label>
+          <input type="number" class="input" id="productQty" placeholder="50">
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="productMinStock">Min Stock</label>
+          <input type="number" class="input" id="productMinStock" placeholder="10">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" onclick="closeModal('addProductModal')">Cancel</button>
+        <button class="btn btn-primary" onclick="addProduct()">Add Product</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/data.js"></script>
+  <script src="js/utils.js"></script>
+  <script>
+    let products = [...mockProducts];
+
+    function getStockStatus(product) {
+      if (product.quantity === 0) {
+        return '<span class="badge badge-danger">Out of Stock</span>';
+      } else if (product.quantity < product.minStock) {
+        return '<span class="badge badge-warning">Low Stock</span>';
+      }
+      return '<span class="badge badge-success">In Stock</span>';
+    }
+
+    function renderProducts(productsToRender) {
+      const tbody = document.getElementById('productTableBody');
+      tbody.innerHTML = '';
+      
+      productsToRender.forEach(product => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+          <td class="font-medium">${product.name}</td>
+          <td class="text-muted">${product.sku}</td>
+          <td class="text-muted">${product.category}</td>
+          <td class="text-right font-medium">${formatCurrency(product.price)}</td>
+          <td class="text-right text-muted">${formatCurrency(product.cost)}</td>
+          <td class="text-right">${product.quantity}</td>
+          <td>${getStockStatus(product)}</td>
+          <td>
+            <div class="dropdown">
+              <button class="btn btn-ghost" onclick="toggleDropdown(this)">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg>
+              </button>
+              <div class="dropdown-menu">
+                <div class="dropdown-item">Edit</div>
+                <div class="dropdown-item">Update Stock</div>
+                <div class="dropdown-item danger">Delete</div>
+              </div>
+            </div>
+          </td>
+        `;
+        tbody.appendChild(row);
+      });
+    }
+
+    function filterProducts() {
+      const query = document.getElementById('productSearch').value.toLowerCase();
+      const filtered = products.filter(p => 
+        p.name.toLowerCase().includes(query) || 
+        p.sku.toLowerCase().includes(query) ||
+        p.category.toLowerCase().includes(query)
+      );
+      renderProducts(filtered);
+    }
+
+    function addProduct() {
+      const name = document.getElementById('productName').value;
+      const sku = document.getElementById('productSku').value;
+      const category = document.getElementById('productCategory').value;
+      const price = parseFloat(document.getElementById('productPrice').value);
+      const cost = parseFloat(document.getElementById('productCost').value);
+      const quantity = parseInt(document.getElementById('productQty').value);
+      const minStock = parseInt(document.getElementById('productMinStock').value);
+
+      if (!name || !sku) {
+        alert('Please fill in product name and SKU');
+        return;
+      }
+
+      const newProduct = {
+        id: Date.now().toString(),
+        name,
+        sku,
+        category,
+        price: price || 0,
+        cost: cost || 0,
+        quantity: quantity || 0,
+        minStock: minStock || 10,
+        createdAt: new Date()
+      };
+
+      products.unshift(newProduct);
+      renderProducts(products);
+      closeModal('addProductModal');
+      
+      // Clear form
+      document.getElementById('productName').value = '';
+      document.getElementById('productSku').value = '';
+      document.getElementById('productCategory').value = '';
+      document.getElementById('productPrice').value = '';
+      document.getElementById('productCost').value = '';
+      document.getElementById('productQty').value = '';
+      document.getElementById('productMinStock').value = '';
+    }
+
+    // Initial render
+    renderProducts(products);
+  </script>
+</body>
+</html>
