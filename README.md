@@ -1,6 +1,6 @@
 # Biz Buddy Hub
 
-Biz Buddy Hub is a React and TypeScript retail dashboard for small businesses. It includes an admin workspace for tracking revenue, customers, sales, inventory, and business benchmarks, plus a simple storefront flow for browsing products and placing orders.
+Biz Buddy Hub is a JavaScript-based retail dashboard for small businesses. It includes an admin workspace for tracking revenue, customers, sales, inventory, and business benchmarks, plus a simple storefront flow for browsing products and placing orders.
 
 ## Features
 
@@ -12,9 +12,9 @@ Biz Buddy Hub is a React and TypeScript retail dashboard for small businesses. I
 ## Tech Stack
 
 - React 18
-- TypeScript
+- JavaScript
 - Vite
-- Tailwind CSS
+- CSS
 - shadcn/ui
 - React Router
 - TanStack Query
@@ -42,6 +42,24 @@ npm run build
 npm run lint
 npm run test
 ```
+
+## GitHub Pages Hosting
+
+This project is configured to work on GitHub Pages.
+
+What was changed:
+
+- The app now uses `HashRouter`, so page refreshes do not break on static hosting
+- Vite uses a GitHub Pages-friendly base path during CI builds
+- A GitHub Actions workflow is included at `.github/workflows/deploy.yml`
+
+To host it:
+
+1. Push the project to GitHub
+2. Open the repository `Settings`
+3. Go to `Pages`
+4. Under `Build and deployment`, choose `GitHub Actions`
+5. Push to `main` or `master` and the workflow will publish the site automatically
 
 ## Project Structure
 
