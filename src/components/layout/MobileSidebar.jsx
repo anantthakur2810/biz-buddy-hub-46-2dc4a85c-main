@@ -31,7 +31,7 @@ export function MobileSidebar({ open, onOpenChange }) {
             <BrandMark className="h-5 w-5 text-sidebar-primary-foreground"/>
           </div>
           <div>
-            <SheetTitle className="text-left text-lg font-semibold text-sidebar-foreground">BizFlow</SheetTitle>
+            <SheetTitle className="text-left text-lg font-semibold text-sidebar-foreground">Bizz Buddy</SheetTitle>
             <p className="text-xs text-sidebar-foreground/60">{profile.title}</p>
           </div>
         </SheetHeader>

@@ -29,7 +29,7 @@ export default function Login() {
             <BrandMark className="h-6 w-6"/>
           </div>
           <div>
-            <h1 className="text-2xl font-semibold text-foreground">Biz Buddy Hub</h1>
+            <h1 className="text-2xl font-semibold text-foreground">Bizz Buddy</h1>
             <p className="text-sm text-muted-foreground">Sign in to continue to your panel</p>
           </div>
         </div>
