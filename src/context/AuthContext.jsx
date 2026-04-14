@@ -12,15 +12,6 @@ export const seedUsers = [
         initials: 'AK',
     },
     {
-        id: 'u-manager-1',
-        name: 'Meera Patel',
-        phone: '9876500002',
-        password: 'Manager@123',
-        role: 'manager',
-        title: 'Operations Manager',
-        initials: 'MP',
-    },
-    {
         id: 'u-employee-1',
         name: 'Rahul Singh',
         phone: '9876500003',
